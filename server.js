@@ -2,7 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/dbConnection');
 const cors = require('cors');
-
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
 // Load environment variables from .env file
 dotenv.config();
 
@@ -17,7 +18,12 @@ app.use(cors());
 
 // Connect to the database
 connectDB();
-
+      
+cloudinary.config({ 
+  cloud_name: 'dijypm3uf', 
+  api_key: '544375846183294', 
+  api_secret: 'T2g5yxNfMUTebdAk-BQJo2kNCNA' 
+});
 // Define your routes here
 // For example:
 const videoRoutes = require('./routes/videoRoute');
@@ -28,6 +34,9 @@ app.use('/api/videos', videoRoutes);
 app.use(`/api/user`, userRoutes);
 app.use(`/api/category`, categoryRoutes);
 
+// Configure Multer for video upload
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 // Define a default route handler
 app.use((req, res) => {
