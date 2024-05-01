@@ -22,8 +22,10 @@ connectDB();
 // For example:
 const videoRoutes = require('./routes/videoRoute');
 const userRoutes = require(`./routes/userRoute`);
+const categoryRoutes = require(`./routes/categoryRoute`);
 app.use('/api/videos', videoRoutes);
 app.use(`/api/user`, userRoutes);
+app.use(`/api/category`, categoryRoutes);
 
 // Define a default route handler
 app.use((req, res) => {
