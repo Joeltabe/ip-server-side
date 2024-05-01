@@ -4,33 +4,30 @@ const connectDB = require('./config/dbConnection');
 const cors = require('cors');
 const cloudinary = require('cloudinary').v2;
 
-
 // Load environment variables from .env file
 dotenv.config();
-
 
 // Initialize Express app
 const app = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
 // Enable CORS for all routes
 app.use(cors());
 
 // Connect to the database
 connectDB();
-      
 
 // Define your routes here
 // For example:
 const videoRoutes = require('./routes/videoRoute');
-const userRoutes = require(`./routes/userRoute`);
-const categoryRoutes = require(`./routes/categoryRoute`);
+const userRoutes = require('./routes/userRoute');
+const categoryRoutes = require('./routes/categoryRoute');
 
 app.use('/api/videos', videoRoutes);
-app.use(`/api/user`, userRoutes);
-app.use(`/api/category`, categoryRoutes);
-
+app.use('/api/user', userRoutes);
+app.use('/api/category', categoryRoutes);
 
 // Define a default route handler
 app.use((req, res) => {
