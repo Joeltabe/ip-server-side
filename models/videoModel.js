@@ -22,10 +22,11 @@ const videoSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    thumbnail: {
+    thumbnail: [{
         type: String,
         required: true
-    },
+    }],
+    
     reviews: {
         type: Number,
         default: 0
