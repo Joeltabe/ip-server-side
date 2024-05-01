@@ -1,19 +1,16 @@
 const Video = require('../models/videoModel');
 const asyncHandler = require('express-async-handler');
 
-// Controller function to create a new video
-exports.createVideo = asyncHandler(async (req, res) => {
-    const { title, description, file, duration, category, thumbnail } = req.body;
-    const newVideo = new Video({
-        title,
-        description,
-        file,
-        duration,
-        category,
-        thumbnail
-    });
-    const savedVideo = await newVideo.save();
-    res.status(201).json(savedVideo);
+// Handle video creation
+router.post('/api/videos/videos', async (req, res) => {
+    try {
+        const { title, description, file, duration, category, thumbnail, rating } = req.body;
+        const video = new Video({ title, description, file, duration, category, thumbnail, rating });
+        await video.save();
+        res.status(201).send(video);
+    } catch (error) {
+        res.status(400).send(error);
+    }
 });
 
 // Controller function to get all videos
@@ -48,3 +45,4 @@ exports.deleteVideo = asyncHandler(async (req, res) => {
     }
     res.status(204).end();
 });
+module.exports = router;

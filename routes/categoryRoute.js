@@ -3,16 +3,17 @@ const router = express.Router();
 const Category = require('../models/categoryModel');
 const asyncHandler = require('express-async-handler');
 
-// Controller function to create a new category
-router.post('/', asyncHandler(async (req, res) => {
-    const { name, thumbnail } = req.body;
-    const newCategory = new Category({
-        name,
-        thumbnail
-    });
-    const savedCategory = await newCategory.save();
-    res.status(201).json(savedCategory);
-}));
+// Handle category creation
+router.post('/api/category', async (req, res) => {
+    try {
+        const { name, thumbnail } = req.body;
+        const category = new Category({ name, thumbnail });
+        await category.save();
+        res.status(201).send(category);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
 
 // Controller function to get all categories
 router.get('/', asyncHandler(async (req, res) => {

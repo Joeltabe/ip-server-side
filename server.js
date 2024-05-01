@@ -23,10 +23,12 @@ connectDB();
 const videoRoutes = require('./routes/videoRoute');
 const userRoutes = require(`./routes/userRoute`);
 const categoryRoutes = require(`./routes/categoryRoute`);
+const revRoutes = require(`./routes/revRoute`);
 app.use('/api/videos', videoRoutes);
 app.use(`/api/user`, userRoutes);
 app.use(`/api/category`, categoryRoutes);
-
+app.use(`/api/reviews`, revRoutes);
+  
 // Define a default route handler
 app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
