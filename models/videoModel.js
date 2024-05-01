@@ -6,34 +6,7 @@ const videoSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
-    file: {
-        type: String,
-        required: true
-    },
-    duration: {
-        type: Number,
-        required: true
-    },
-    category: {
-        type: String,
-        required: true
-    },
-    thumbnail: [{
-        type: String,
-        required: true
-    }],
-    
-    reviews: {
-        type: Number,
-        default: 0
-    }
+    // Other fields...
 });
 
-// Create the Video model
-const Video = mongoose.model('Video', videoSchema);
-
-module.exports = Video;
+module.exports = videoSchema;
