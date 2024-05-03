@@ -36,6 +36,7 @@ exports.createVideo = async (req, res) => {
                 videoUrl: result.secure_url,
             });
 
+            
             await video.save();
 
             res.status(201).json({ message: 'Video uploaded successfully' });

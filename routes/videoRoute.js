@@ -5,11 +5,12 @@ const multer = require('multer');
 
 // Configure Multer for video upload
 const storage = multer.memoryStorage();
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: ''});
 
 // Route to create a new video
 router.post('/upload', upload.single('video'), videoController.createVideo);
     
+
 // Route to get all videos
 router.get('/videos', videoController.getAllVideos);
 
