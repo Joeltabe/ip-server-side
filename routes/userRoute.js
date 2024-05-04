@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
 const User = require('../models/userModel');
 const JWT_SECRET = process.env.JWT_SECRET || 'enjoy';
+
 // Register a new user
 router.post('/register', async (req, res) => {
   try {
