@@ -27,7 +27,7 @@ const categoryRoutes = require('./routes/categoryRoute');
 const genreRouter = require('./controllers/genreController');
 
 
-app.use('/api/  ', genreRouter);
+app.use('/api/genre', genreRouter);
 app.use('/api/videos', videoRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/category', categoryRoutes);
