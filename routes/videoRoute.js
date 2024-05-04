@@ -15,6 +15,10 @@ router.post('/upload', upload.single('video'), videoController.createVideo);
 router.get('/videos', videoController.getAllVideos);
 
 
+// Route to get all videos
+router.get('/latest', videoController.getLatestVideos);
+
+
 // Route to get a single video by ID
 router.get('/videos/:id', videoController.getVideoById);
 

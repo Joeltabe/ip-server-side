@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 // Define the video schema
 const videoSchema = mongoose.Schema({
     title: {
@@ -22,14 +23,18 @@ const videoSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    thumbnail: [{
-        type: String,
+    thumbnail: String,
+    duration: {
+        type: Number,
         required: true
-    }],
+    },
     reviews: {
         type: Number,
         default: 0
-        
+    },
+    timestamp: {
+        type: Date,
+        default: Date.now // Automatically set the timestamp to the current date and time when a new video is created
     }
 });
 

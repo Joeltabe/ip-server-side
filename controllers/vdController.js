@@ -35,6 +35,7 @@
                     thumbnail: req.body.thumbnail,
                     reviews: req.body.reviews || 0,
                     videoUrl: result.secure_url,
+                     timestamp: new Date() // Add timestamp
                 });
 
                 
@@ -57,6 +58,22 @@
             res.status(500).json({ error: 'Error getting all videos' });
         }
     };
+    exports.getLatestVideos = async (req, res) => {
+        try {
+            // Calculate the date and time one week ago
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+    
+            // Fetch videos uploaded within the last week
+            const videos = await Video.find({ timestamp: { $gte: oneWeekAgo } }).populate('category', 'name thumbnail');
+            
+            res.status(200).json(videos);
+        } catch (error) {
+            console.error('Error getting all videos:', error);
+            res.status(500).json({ error: 'Error getting all videos' });
+        }
+    };
+    
 
     exports.getVideoById = async (req, res) => {
         try {
