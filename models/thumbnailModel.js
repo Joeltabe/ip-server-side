@@ -13,6 +13,7 @@ const thumbnailSchema = mongoose.Schema({
 });
 
 // Create the Thumbnail model
-const Thumbnail = mongoose.model('Genre', thumbnailSchema);
+const Thumbnail = mongoose.model('Thumbnail', thumbnailSchema);
+
 
 module.exports = Thumbnail;
