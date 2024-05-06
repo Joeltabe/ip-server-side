@@ -18,9 +18,11 @@ router.get('/videos', videoController.getAllVideos);
 // Route to get all videos
 router.get('/latest', videoController.getLatestVideos);
 
+// Route to get all videos
+router.get('/genre', videoController.getAllVideosByGenre);
 
 // Route to get a single video by ID
-router.get('/videos/:id', videoController.getVideoById);
+router.get('/videos/id', videoController.getVideoById);
 
 // Route to update a video by ID
 router.put('/videos/:id', videoController.updateVideo);

@@ -32,6 +32,7 @@
                     duration: req.body.duration,
                     category: req.body.category,
                     genre: req.body.genre,
+                    releasedate: req.body.releasedate,
                     thumbnail: req.body.thumbnail,
                     reviews: req.body.reviews || 0,
                     videoUrl: result.secure_url,
@@ -74,7 +75,22 @@
         }
     };
     
-
+    exports.getAllVideosByGenre = async (req, res) => {
+        try {
+            const { genre } = req.query; // Extract genre from query parameters
+            let videos;
+            if (genre) {
+                videos = await Video.find({ genre }).populate('category', 'name thumbnail');
+            } else {
+                videos = await Video.find().populate('category', 'name thumbnail');
+            }
+            res.status(200).json(videos);
+        } catch (error) {
+            console.error('Error getting all videos:', error);
+            res.status(500).json({ error: 'Error getting all videos' });
+        }
+    };
+    
     exports.getVideoById = async (req, res) => {
         try {
             const video = await Video.findById(req.params.id).populate('category', 'name thumbnail');

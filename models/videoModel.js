@@ -23,6 +23,10 @@ const videoSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    releasedate: {
+        type: String,
+        required: true
+    },
     thumbnail: String,
     duration: {
         type: Number,
